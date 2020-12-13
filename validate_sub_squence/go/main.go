@@ -13,16 +13,10 @@ func isValidSubSeq(array []int, sequence []int) bool {
 	seqLen := len(sequence)
 	var posOfSubSeq = 0
 	for _, num := range array {
-		if posOfSubSeq < seqLen {
-			if num == sequence[posOfSubSeq] {
-				posOfSubSeq++
-			}
+		if posOfSubSeq < seqLen && num == sequence[posOfSubSeq] {
+			posOfSubSeq++
 		}
 	}
 
-	if posOfSubSeq == seqLen {
-		return true
-	}
-
-	return false
+	return posOfSubSeq == seqLen
 }
