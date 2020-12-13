@@ -5,20 +5,22 @@ import "fmt"
 func main() {
 
 	collection := []int{3, 5, -4, 8, 11, 1, -1, 6}
-	fmt.Println(twoNumSum(collection, 20))
+	fmt.Println(twoNumSum(collection, 10))
 
 }
 
 func twoNumSum(nums []int, target int) []int {
-	for pos, elm := range nums {
-		for i := pos + 1; i <= len(nums)-1; i++ {
-			operand := nums[i]
-			hasMatch := elm+operand == target
+	store := make(map[int]bool)
 
-			if hasMatch {
-				return []int{elm, operand}
-			}
+	for _, elm := range nums {
+		y := target - elm
+		_, ok := store[y]
+
+		if ok {
+			return []int{elm, y}
 		}
+
+		store[elm] = true
 	}
 
 	return []int{}
