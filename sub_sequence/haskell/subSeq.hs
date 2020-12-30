@@ -1,20 +1,17 @@
--- Checks if a subSequence exsists in an array
--- O(n), the last thing we are doing is calling a function, so no
--- space is used.
--- There is something interesting about how, with FP, when you define data,
--- you go through snapshots of what the data could look like through the
--- computation, without even needing to know the operation you need do.
-subSeq :: [Integer] -> [Integer] -> Bool
-subSeq (x : xs) subseq@(y : ys) =
+type SubSeq = [Integer]
+
+hasSubSequence :: [Integer] -> SubSeq -> Bool
+hasSubSequence xs seqToMatch = snd $ foldl subSeq (seqToMatch, False) xs
+
+subSeq :: ([Integer], Bool) -> Integer -> ([Integer], Bool)
+subSeq ([], _) _ = ([], True)
+subSeq (sq@(y : ys), _) x =
   case x == y of
-    True -> subSeq xs ys
-    False -> subSeq xs subseq
-subSeq [] [] = True
-subSeq _ [] = True
-subSeq [] _ = False
+    True -> (ys, False)
+    False -> (sq, False)
 
 lst :: [Integer]
-lst = [5, 1, 22, 25, 6, -1, 8, 10]
+lst = [5, 1, 22, 25, 6, -1, 10, 8]
 
 subSequence :: [Integer]
 subSequence = [1, 6, -1, 10]
