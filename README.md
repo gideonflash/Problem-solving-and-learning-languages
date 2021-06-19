@@ -9,3 +9,4 @@ a way to learn new languages and discover interesting patterns i use when solvin
 
 - 57 challenges to develop you coding skills [book](https://amzn.to/2JFnWJG)
 - Programming challenges [book](https://amzn.to/3mzPf6J)
+- Haskell [link](https://wiki.haskell.org/H-99:_Ninety-Nine_Haskell_Problems)
