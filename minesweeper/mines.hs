@@ -70,8 +70,17 @@ parseRow' rowPos acc character
 -- = [firstpos:Boom secondpos:[(1,1),(1,3), (2,1), (2,2), (2,3)]]
 type AdjacentGroup = Maybe [Pos]
 
-posAdjacentGroups :: GridPositions -> AdjacentGroup
-posAdjacentGroups = undefined
+posAdjacentGroups :: GridPositions -> [AdjacentGroup]
+posAdjacentGroups =
+  map
+    ( \x -> case x of
+        Nothing -> Nothing
+        Just x -> Just [x]
+    )
+    . foldr (++) []
+
+getPosAdjecents :: (Int, Int) -> [Pos]
+getPosAdjecents = undefined
 
 -- Get characters in adjacent position
 -- e.g [Boom sndpos:[(1,1),(1,3), (2,1), (2,2), (2,3)]]
